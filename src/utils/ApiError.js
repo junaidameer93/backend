@@ -1,5 +1,3 @@
-import e = require("express");
-
 class ApiError extends Error {
     constructor(
         statusCode,
