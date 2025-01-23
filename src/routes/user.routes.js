@@ -32,7 +32,7 @@ router.route("/change-password").post( verifyJWT, changeCurrentPassword );
 router.route("/current-user").get( verifyJWT, getCurrentUser);
 router.route("/update-account").patch( verifyJWT, updateAccountDetails);
 router.route("/avatar").patch( verifyJWT, upload.single("avatar"), updateUserAvatar);
-router.route("/coverImage").patch( verifyJWT, upload.single("coverImage"), updateUserCoverImage);
+router.route("/cover-image").patch( verifyJWT, upload.single("coverImage"), updateUserCoverImage);
 router.route("/channel-profile/:username").get( getChannelProfile );
 router.route("/history").get( verifyJWT, getWatchHistory );
 
