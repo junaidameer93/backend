@@ -12,7 +12,7 @@ const videoSchema = new Schema({
         required: true,
         trim: true,
     },
-    tittle: {
+    title: {
         type: String,
         required: true,
     },
