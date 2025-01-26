@@ -21,4 +21,25 @@ const uploadOnCloudinary = async (localFilePath) => {
     }
 }
 
-export { uploadOnCloudinary };
+const deleteFileCloudinary = async (fileUrl) => {
+    try {
+        // Extract the public ID from the file URL
+        const urlParts = fileUrl.split('/');
+        const publicIdWithExtension = urlParts.slice(-1).join('/'); // Last two parts of the URL
+        const publicId = publicIdWithExtension.split('.')[0]; // Remove file extension
+
+        // Call the Cloudinary destroy API
+        const result = await cloudinary.uploader.destroy(publicId, { resource_type: 'video' });
+        console.log(result)
+        // Check the result of the deletion
+        if (result.result === 'ok') {
+            return result;
+        } 
+    } catch (error) {
+        console.error('Error deleting file from Cloudinary:', error.message);
+        throw error;
+    }
+};
+
+
+export { uploadOnCloudinary, deleteFileCloudinary };
