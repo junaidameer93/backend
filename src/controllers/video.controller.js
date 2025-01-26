@@ -80,7 +80,7 @@ const updateVideo = asyncHandler(async (req, res) => {
     const oldVideo = await Video.findById(videoId)
     console.log(oldVideo.videofile);
     if(oldVideo.videofile){
-        const deleteResponse = await deleteFileCloudinary(oldVideo.videofile)
+        const deleteResponse = await deleteFileCloudinary(oldVideo.videofile, 'video')
         console.log(deleteResponse);
     }
 
@@ -98,7 +98,7 @@ const updateVideo = asyncHandler(async (req, res) => {
         }
     )
 
-    return res.status(200).json(new ApiResponse(200, oldVideo, "Video updated successfully"))
+    return res.status(200).json(new ApiResponse(200, video, "Video updated successfully"))
 
 })
 
