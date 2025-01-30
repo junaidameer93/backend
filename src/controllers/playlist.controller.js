@@ -3,6 +3,23 @@ import {ApiError} from "../utils/ApiError.js";
 import {ApiResponse} from "../utils/ApiResponse.js";
 import {Playlist} from "../models/playlist.model.js";
 
+const getUserPlayList = asyncHandler(async (req, res) => {
+
+    const {userId} = req.params;
+    if(!userId){
+        throw new ApiError(402,"User id is required")
+    }
+
+    const playlist = await Playlist.find({owner:userId})
+    if(!playlist){
+        throw new ApiError(404,"Playlist not found")
+    }
+
+    return res.status(200).json(new ApiResponse(200, playlist, "Playlist fetched successfully"))
+
+
+})
+
 const createPlayList = asyncHandler(async (req, res)=>{
 
     const {name,description,videoId} = req.body;
@@ -109,5 +126,6 @@ export{
     createPlayList,
     updatePlaylist,
     addVideoToPlaylist,
-    removeVideoFromPlaylist
+    removeVideoFromPlaylist,
+    getUserPlayList
 }

@@ -10,8 +10,6 @@ dotenv.config({
 //sudo lsof -i :8000
 //sudo kill -9 <PID>
 
-//Huxn330@outlook.com
-//Halalkhanpesh101#
 
 connectDB()
 .then(() => {
